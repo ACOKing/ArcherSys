@@ -1,15 +1,16 @@
 <!DOCTYPE HTML>
 <html>
-<title>Sign Up for ArcherVM Peridot</title>
-<link rel="stylesheet"  type="text/css" href="registerstyles.css"/>
-<script type="text/javascript" src="registerscript.js"></script>
+<head>
+<title>Sign Up for ArcherSys OS</title>
+<link rel="stylesheet"  type="text/css" href="core/css/registerstyles.css"/>
+<script type="text/javascript" src="core/js/registerscript.js"></script>
 
  <?php
  // Connects to your Database
 
- mysql_connect("localhost", "acoadmin", "aco1234$") or die(mysql_error());
+ mysql_connect("localhost", "root", "aco1234") or die(mysql_error());
 
- mysql_select_db("acoserver") or die(mysql_error());
+ mysql_select_db("acoserver_acoserver") or die(mysql_error());
 
 
  //This code runs if the form has been submitted
@@ -101,6 +102,8 @@ echo " <p>Thank you, you have registered - you may now login</a>.</p> ";
  else
  {
  ?>
+</head>
+<body>
 <div id="background">
   <div id="backgroundOverlay">
     <div id="login">

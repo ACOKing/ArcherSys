@@ -1,7 +1,13 @@
+
 <!DOCTYPE HTML>
+
 <?php
 
-require_once("config.php");
+
+
+
+  require_once "config.php";
+
  // Connects to your Database
 
  mysql_connect("localhost", "root", "aco1234") or die(mysql_error());
@@ -10,6 +16,7 @@ require_once("config.php");
 
  
  //checks cookies to make sure they are logged in
+
 
 
  
@@ -44,6 +51,7 @@ if(isset($_COOKIE['ID_my_site']))
  	else
 
  			{
+$_SESSION["gravatar"] = asos_fetch_gravatar($info["username"]);
 	echo "<div class=\"header\">";
 		echo "<h1>Start</h1>";
                 
@@ -66,28 +74,36 @@ header("Location: login.php");
 
  }
 
-    
-
- 
+  
 
  
 		
 		?>
 		
-<html>
+<html  xmlns:fb="http://ogp.me/ns/fb#">
 <head>
+<meta name="msapplication-config" content="ieconfig.xml" />
+<meta charset="utf-8">
 <link rel="icon"  href="http://localhost:80/favicon.ico" >
 <title>VM Home</title>
-<link href='http://fonts.googleapis.com/css?family=Droid+Sans|Open+Sans:700,600' rel='stylesheet' type='text/css'>
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.webapp">
+<meta name="application-name" content="ArcherSys OS">
 <meta content='width=device-width, initial-scale=1.0, user-scalable=no' name='viewport'>
+<script src="core/js/libs/jquery.min.js"></script>
+<meta http-equiv="X-UA-Compatible" content="chrome=1"/>
+<script src="core/js/libs/togetherjs.js"></script>
+<script src="core/js/libs/localforage.min.js"></script>
 
-<script src="js/libs/jquery.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/themes/smoothness/jquery-ui.css" />
-<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
- <link rel="stylesheet" href="css/style.css">
 
+ <link rel="stylesheet" href="core/css/style.css">
+<script src="https://login.persona.org/include.js"></script>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<link href='http://fonts.googleapis.com/css?family=Droid+Sans|Open+Sans:700,600' rel='stylesheet' type='text/css'>
 <style type="text/css">
+     @media (min-width: 600px) {
+      font-size: 14px;
+}
 * { -webkit-font-smoothing:antialiased; -moz-font-smoothing:antialiased; -ms-font-smoothing:antialiased; -o-font-smoothing:antialiased; font-smoothing:antialiased; }
 
 /*.module:hover {
@@ -144,7 +160,7 @@ body {
     .module > div.img > p.sub-heading {
       margin-left: 50px;
       font-size: 18px;
-      width: 70%; 
+      width: 70%;
         text-decoration: none;
     }
 
@@ -170,7 +186,7 @@ h1 {
 .profile {
   position: absolute;
   float: right;
-  background: url(http://ashleyjt.net/windows/images/me.png) no-repeat;
+  
   background-size: 30%;
   width: 216px;
   height: 216px;
@@ -420,7 +436,8 @@ input[type=button] {
 
 .twitter {
   background-image: url(http://ashleyjt.net/windows/images/twitter.png); }
-
+.mahara{
+  background-image: url("http://t3.gstatic.com/images?q=tbn:ANd9GcQGpYFBI1FW7pfgS3SvuODfDt8Yy1udDp9w5-cZfYZSU6E2jeHJ:www.tknika.net/liferay/image/image_gallery%3Fuuid%3D0d1f4093-0233-4817-94bf-e9d146890659%26groupId%3D115903%26t%3D1348833285293");}
 .mail {
   background-image: url(http://ashleyjt.net/windows/images/Hotmail.png); }
 
@@ -521,7 +538,7 @@ button {
 
 footer {
   margin: 40px 0 0 0;
-  font-size: 12px; 
+  font-size: 12px;
 }
 @import url(http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400,200);
 
@@ -624,19 +641,19 @@ div[class^="icon"]{
 ::-webkit-scrollbar{
   width: 10px;
 	height: 10px;
-	cursor: pointer;	
+	cursor: pointer;
 }
 ::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px 2px rgba(0,0,0,0.3);
     background: #007491;
 }
 ::-webkit-scrollbar-thumb {
-    background: #002f3b; 
+    background: #002f3b;
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
     cursor: pointer;
 }
 ::selection{
-    background: mintcream; 
+    background: mintcream;
 }
 
 @keyframes flip{
@@ -644,10 +661,10 @@ div[class^="icon"]{
     transform: rotateX(0deg);
   }
   15%{
-    transform: rotateX(360deg);  
+    transform: rotateX(360deg);
   }
   100%{
-    transform: rotateX(360deg); 
+    transform: rotateX(360deg);
   }
 }
 
@@ -668,7 +685,7 @@ div[class^="icon"]{
 
 @keyframes fade{
   0%{
-    opacity: 0; 
+    opacity: 0;
   }
   10%{
     opacity: 1;
@@ -846,11 +863,13 @@ img.prof{
 	bottom: 0px;
 }
 </style>
-<script>
+
+<script src="core/js/beximal.js"></script>
+
+<script type="text/javascript">
 
 
-$(function(){
-    
+$(document).ready(function(){
   var sliderUL = $('div.slider').children('ul'),
   	screens = sliderUL.find('li'),
 		screenWidth = screens.width(),
@@ -874,11 +893,13 @@ $(function(){
 			current = 1;
 			loc = 0;
 		}
+               
 
 		transition(sliderUL, loc, direction);
 
 	});
 
+});
 	function transition(container, loc, direction) {
 		var unit;
 
@@ -892,73 +913,109 @@ $(function(){
 		});
 	}
   
-});
+
 
 
 
 </script>
-<script src="js/libs/togetherjs.js"></script>
-<script src="js/beximal.js"></script>
+
+
+
+<script src="core/js/mozilla/events.js"></script>
+<script>
+var signinLink = document.getElementById('signin');
+if (signinLink) {
+  signinLink.onclick = function() { navigator.id.request(); };
+}
+
+var signoutLink = document.getElementById('signout');
+if (signoutLink) {
+  signoutLink.onclick = function() { navigator.id.logout(); };
+}
+</script>
 
 </head>
 
 <body>
-
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 	
 
 
 
 	
-	<div class="container-fluid">
+	<div class="container-fluid" sandbox >
 
 		<div class="slider">
 			<ul class="screen">
 				<li>
 
-<div class="module purple double img w">
-<a href="desktop.php">
-    <p class="title">Home</p>
-<p class="subheading">Access the Desktop</p>
-</a>
-</div>
+					<div class="module purple double img w">
+						<h2 class="title">Home</h2>
+					<p class="subheading"> <a href="main.php">Welcome to the new ArcherSys UI !</a> </p>
+					</div>
 <div class="module midblue double img twitter">
-   <p class="title">Wordpress</p>
-  <a href="archersocial"> <p class="subheading">Access your social center</p></a>
+   <h2 class="title">Wordpress</h2>
+ <p class="subheading"> <a href="archersocial">Access your social center</a></p>
 </div>
 <a href="/Producktiviti/SilverTick" class='wide blue cal_e'>
 				<h1><?php echo date("j"); ?></h1><p><?php echo date("l");?></p>
 	<h2 class="top cal_i">Today's Schedule</h2>
 				<i class="icon-calendar"></i>
 			</a>
-<div class="module neonblue single img wo">
+<div class="module neonblue single img word">
     <a href="Producktiviti/PDFLint">
       <p class="title">PDFLint</p>
     </a>
 </div>
-
-
+<div class="module blue double img ps">
+<p class="title">CanvasShoppe</p>
+</div>
 
 </li>
 <li>
-<div class="module green single img fb" id="birdc">
+<div class="module green double img fb" id="birdc">
 <p class="title">Collaborate</p>
+
 </div>
+<div class="module red single img mail">
+<h2 class="title">RoundCube Mail</h2>
+</div>
+
+
+<li>
+<div class="module blue double img mahara">
+						<a href="http://127.0.0.1/apps/mahara/htdocs"><p class="title">Partners</p></a>
+					</div>
+					<div class="module red single img market">
+					<a href="https://sites.google.com/site/archersysoswalnutstore/"><p class="title">ArcherSys Walnut App Store</p></a>
+					</div>
+					</div>
+</li>
 </li>
 </ul>
+
 </div>
 		
 
-</div>
 
-		<div id="screen-nav">         
-                         
 
+	<div id="screen-nav">
+                        
 			<button data-dir="prev"><</button>
 			<button data-dir="next">></button>
 		</div>
+
 </div>
 
 
 
  </body>
  </html>
+
