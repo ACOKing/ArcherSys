@@ -1,6 +1,7 @@
 ArcherSys
 =========
-
+## What is ArcherSys?
+ArcherSys OS is an OS that is in the form of a website
 
 Directions
 ==========
